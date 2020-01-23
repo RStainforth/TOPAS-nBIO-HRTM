@@ -1,0 +1,142 @@
+# TOPAS-nBio example - Cylinder for airway
+# Author: Rob Stainforth (robert.stainforth@canada.ca)
+# Organisation: Health Canada, Government of Canada
+# Thicknesses of the fast, cilia and secretory layers here are based on the dimensions quoted
+# by the ICRP in publication 66 on page 16 (PDF pg. 27)
+
+# World volume
+d:Ge/World/HLX=100 um
+d:Ge/World/HLY=100 um
+d:Ge/World/HLZ=100 um
+b:Ge/World/Invisible="True"
+s:Ge/World/Material ="Vacuum"
+
+###############################################################
+###############################################################
+
+#######################################
+########## Fast Mucous Layer ########## 
+#######################################
+
+s:Ge/FastMucous/Type			= "TsBox"
+s:Ge/FastMucous/Material		= "G4_WATER"
+s:Ge/FastMucous/Parent			= "World"
+d:Ge/FastMucous/HLX				= 30.0 um
+d:Ge/FastMucous/HLY				= 2.5 um
+d:Ge/FastMucous/HLZ				= 30.0 um
+d:Ge/FastMucous/TransX			= 0.0 um
+d:Ge/FastMucous/TransY			= 0.0 um
+d:Ge/FastMucous/TransZ			= 0.0 um
+s:Ge/FastMucous/Color			= "purple"
+s:Ge/FastMucous/DrawingStyle 	= "solid"
+
+#################################
+########## Cilia Layer ########## 
+#################################
+
+s:Ge/CiliaLayer/Type			= "TsBox"
+s:Ge/CiliaLayer/Material		= "G4_WATER"
+s:Ge/CiliaLayer/Parent			= "World"
+d:Ge/CiliaLayer/HLX				= 30.0 um
+d:Ge/CiliaLayer/HLY				= 3.0 um
+d:Ge/CiliaLayer/HLZ				= 30.0 um
+d:Ge/CiliaLayer/TransX			= 0.0 um
+d:Ge/CiliaLayer/TransY			= -5.5 um
+d:Ge/CiliaLayer/TransZ			= 0.0 um
+s:Ge/CiliaLayer/Color			= "blue"
+s:Ge/CiliaLayer/DrawingStyle 	= "solid"
+
+#####################################
+########## Secretory Layer ########## 
+#####################################
+
+s:Ge/SecretoryLayer/Type			= "TsBox"
+s:Ge/SecretoryLayer/Material		= "G4_WATER"
+s:Ge/SecretoryLayer/Parent			= "World"
+d:Ge/SecretoryLayer/HLX				= 30.0 um
+d:Ge/SecretoryLayer/HLY				= 20 um
+d:Ge/SecretoryLayer/HLZ				= 30.0 um
+d:Ge/SecretoryLayer/TransZ			= 0. um
+d:Ge/SecretoryLayer/TransX			= 0. um
+d:Ge/SecretoryLayer/TransY			= -28.5 um
+s:Ge/SecretoryLayer/Color			= "white"
+#ss:Ge/SecretoryCell/DrawingStyle	= "FullWireFrame"
+
+####################################
+########## Secretory Cell ########## 
+####################################
+
+s:Ge/SecretoryCell/Type				= "TsBox"
+s:Ge/SecretoryCell/Material			= "G4_WATER"
+s:Ge/SecretoryCell/Parent			= "SecretoryLayer"
+d:Ge/SecretoryCell/HLX				= 5.5 um
+d:Ge/SecretoryCell/HLY				= 19.99 um
+d:Ge/SecretoryCell/HLZ				= 5.5 um
+d:Ge/SecretoryCell/TransZ			= 0. um
+d:Ge/SecretoryCell/TransX			= 0. um
+d:Ge/SecretoryCell/TransY			= 0. um
+s:Ge/SecretoryCell/Color			= "white"
+#ss:Ge/SecretoryCell/DrawingStyle	= "FullWireFrame"
+
+############################################
+########## Secretory Cell Nucleus ##########
+############################################
+s:Ge/SecretoryCellNucleus/Type         	   = "TsSphere"
+s:Ge/SecretoryCellNucleus/Material         = "G4_WATER"
+s:Ge/SecretoryCellNucleus/Parent       	   = "SecretoryCell"
+d:Ge/SecretoryCellNucleus/RMax         	   = 5.0 um
+d:Ge/SecretoryCellNucleus/translateX   	   = 0.06074599097100201 um
+d:Ge/SecretoryCellNucleus/translateY   	   = -12.040596449642136 um
+d:Ge/SecretoryCellNucleus/translateZ   	   = -0.06595376157615443 um
+s:Ge/SecretoryCellNucleus/DrawingStyle 	   = "solid"
+s:Ge/SecretoryCellNucleus/Color            = "red"
+d:Ge/SecretoryCellNucleus/MaxStepSize      = 1.0 nm
+
+# This is the volume which encapsulates the cell nucleus at a distance
+# of 0.5 um from its surface. The thickness of this volume is small (0.05 um).
+########################################################
+########## Secretory Cell Nucleus Phase Space ##########
+########################################################
+s:Ge/SecretoryCellNucleusShell/Type         			= "TsSphere"
+s:Ge/SecretoryCellNucleusShell/Material         		= "G4_WATER"
+s:Ge/SecretoryCellNucleusShell/Parent       	   		= "SecretoryCell"
+d:Ge/SecretoryCellNucleusShell/RMax         	   		= 5.1 um
+d:Ge/SecretoryCellNucleusShell/RMin         	   		= 5.05 um
+d:Ge/SecretoryCellNucleusShell/translateX   	   		= 0.06074599097100201 um
+d:Ge/SecretoryCellNucleusShell/translateY   	   		= -12.040596449642136 um
+d:Ge/SecretoryCellNucleusShell/translateZ   	   		= -0.06595376157615443 um
+s:Ge/SecretoryCellNucleusShell/DrawingStyle 	   		= "FullWireFrame"
+s:Ge/SecretoryCellNucleusShell/Color            		= "white"
+
+###############################################################
+###############################################################
+
+b:Ph/ListProcesses = "True"
+#sv:Ph/Default/Modules = 1 "TsEmDNAPhysics"
+
+s:So/PhaseSpaceRadiation/Type                            = "PhaseSpace"
+s:So/PhaseSpaceRadiation/PhaseSpaceFileName              = "stage-2_5.0MeV_alpha_PS"
+s:So/PhaseSpaceRadiation/Component                       = "World"
+#i:So/PhaseSpaceRadiation/PhaseSpaceMultipleUse          = 2
+#i:So/PhaseSpaceRadiation/PhaseSpaceBufferSize           = 100
+b:So/PhaseSpaceRadiation/PhaseSpaceIncludeEmptyHistories = "False"
+
+# The following define the scorers
+############################
+######### SCORERS ##########
+############################
+
+# Here we score the energy deposited in the cell geometry
+s:Sc/RootFileName 							  			= "stage-2_5.0MeV_alpha_ROOT.root"
+s:Sc/CellNTupleScorer/Quantity 				  			= "TsNtupleForCell"
+s:Sc/CellNTupleScorer/Component 				  		= "SecretoryCell"
+s:Sc/CellNTupleScorer/IfOutputFileAlreadyExists 		= "Overwrite"  
+s:Sc/CellNTupleScorer/OutputType 				  		= "ROOT" 
+s:Sc/CellNTupleScorer/OutputFile 			      		= "data"
+
+s:Gr/ViewA/Type 										= "OpenGL"
+i:Gr/ViewA/WindowSizeX 								= 1000
+i:Gr/ViewA/WindowSizeY 								= 800
+u:Gr/ViewA/Zoom                             			= 0.75
+
+b:Ts/PauseBeforeQuit 									= "True"
