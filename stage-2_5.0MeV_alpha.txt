@@ -112,7 +112,7 @@ s:Ge/SecretoryCellNucleusShell/Color            		= "white"
 ###############################################################
 
 b:Ph/ListProcesses = "True"
-#sv:Ph/Default/Modules = 1 "TsEmDNAPhysics"
+sv:Ph/Default/Modules = 1 "g4em-dna"
 
 s:So/PhaseSpaceRadiation/Type                            = "PhaseSpace"
 s:So/PhaseSpaceRadiation/PhaseSpaceFileName              = "stage-2_5.0MeV_alpha_PS"
